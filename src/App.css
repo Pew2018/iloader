@@ -37,23 +37,6 @@ body { margin: 0; min-width: 320px; overflow: hidden; }
 .log-inner::-webkit-scrollbar, .operation-extra-details::-webkit-scrollbar {
   display: none;
 }
-.edge-feedback {
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: 52px;
-  z-index: 1100;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .24s ease-out;
-  background: radial-gradient(ellipse 75% 54px at 50% 0, rgba(33,150,243,.34), transparent 70%);
-}
-.edge-feedback.top { top: 0; }
-.edge-feedback.bottom { bottom: 0; transform: rotate(180deg); }
-.edge-feedback.visible { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .edge-feedback { transition: none; }
-}
 .workspace-header {
   min-height: 78px;
   padding: 12px clamp(24px, 3vw, 36px);

@@ -121,5 +121,3 @@
   --normal-text: #f1f1f1;
   --normal-border: #575757;
 }
-
-:root[data-theme="dark"] .edge-feedback { background: radial-gradient(ellipse 75% 54px at 50% 0, rgba(66,165,245,.38), transparent 70%); }
