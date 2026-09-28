@@ -21,8 +21,24 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Build frontend
         run: bun run build
-      - name: Build macOS arm64 app
+      - name: Build signed macOS arm64 app
+        env:
+          APPLE_SIGNING_IDENTITY: "-"
         run: bunx tauri build --target aarch64-apple-darwin --bundles dmg --config src-tauri/ci.conf.json
+      - name: Verify DMG and bundled app signature
+        shell: bash
+        run: |
+          set -euo pipefail
+          dmg=(src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg)
+          test -f "${dmg[0]}"
+          hdiutil verify "${dmg[0]}"
+          mount_point="$RUNNER_TEMP/iloader-verify"
+          mkdir -p "$mount_point"
+          hdiutil attach "${dmg[0]}" -nobrowse -readonly -mountpoint "$mount_point"
+          trap 'hdiutil detach "$mount_point" -quiet' EXIT
+          codesign --verify --deep --strict --verbose=2 "$mount_point/iloader.app"
+          codesign -dv --verbose=2 "$mount_point/iloader.app" 2>&1 | grep 'Signature=adhoc'
+          shasum -a 256 "${dmg[0]}"
       - name: Upload arm64 DMG
         uses: actions/upload-artifact@v4
         with:
