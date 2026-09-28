@@ -9,6 +9,7 @@ import { DialogProvider } from "./DialogContext";
 import "./i18next";
 import { PlatformProvider } from "./PlatformContext";
 import { RippleEffect } from "./components/RippleEffect";
+import { WebviewInteractions } from "./components/WebviewInteractions";
 import { ThemeController } from "./ThemeController";
 import "./theme.css";
 
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </StoreProvider>
     </PlatformProvider>
     <RippleEffect />
+    <WebviewInteractions />
     <Toaster richColors expand />
   </React.StrictMode>,
 );

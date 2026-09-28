@@ -19,9 +19,41 @@
   --danger: #c62828;
 }
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; }
-#root { min-height: 100vh; }
-.workspace { min-height: 100vh; background: #e8e8e8; }
+html, body, #root { height: 100%; overscroll-behavior: none; }
+body { margin: 0; min-width: 320px; overflow: hidden; }
+#root { overflow: hidden; }
+.workspace {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  background: #e8e8e8;
+}
+/* The content still scrolls with a wheel, trackpad, touch and keyboard. */
+.workspace, .modal-content, .log-inner, .operation-extra-details {
+  scrollbar-width: none;
+  overscroll-behavior: none;
+}
+.workspace::-webkit-scrollbar, .modal-content::-webkit-scrollbar,
+.log-inner::-webkit-scrollbar, .operation-extra-details::-webkit-scrollbar {
+  display: none;
+}
+.edge-feedback {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 52px;
+  z-index: 1100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .24s ease-out;
+  background: radial-gradient(ellipse 75% 54px at 50% 0, rgba(33,150,243,.34), transparent 70%);
+}
+.edge-feedback.top { top: 0; }
+.edge-feedback.bottom { bottom: 0; transform: rotate(180deg); }
+.edge-feedback.visible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .edge-feedback { transition: none; }
+}
 .workspace-header {
   min-height: 78px;
   padding: 12px clamp(24px, 3vw, 36px);
@@ -178,16 +210,15 @@ h1, h2, h3, h4 { margin: 0 0 12px; font-weight: 500; }
   border-radius: 50%;
   background: rgba(33, 33, 33, .17);
   transform: scale(0);
+  opacity: 1;
   pointer-events: none;
-  animation: pixel-ripple .55s ease-out forwards;
+  transition: transform .35s cubic-bezier(.2, 0, .2, 1), opacity .24s linear;
 }
+.ripple-ink.expanded { transform: scale(1); }
+.ripple-ink.released { opacity: 0; }
 .action-row.single-row button:first-child .ripple-ink,
 .action-button.primary .ripple-ink,
-.toolbar-button .ripple-ink { background: rgba(255,255,255,.3); }
-@keyframes pixel-ripple {
-  from { transform: scale(0); opacity: 1; }
-  to { transform: scale(1); opacity: 0; }
-}
+.toolbar-button .ripple-ink { background: rgba(255,255,255,.28); }
 @media (max-width: 860px) {
   .workspace-body { flex-direction: column; }
   .workspace-sidebar, .workspace-content { width: 100%; }
@@ -206,6 +237,6 @@ h1, h2, h3, h4 { margin: 0 0 12px; font-weight: 500; }
   .workspace-list-item { padding: 14px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ripple-ink { animation-duration: .01ms; }
+  .ripple-ink { transition: none; }
   button { transition: none; }
 }
