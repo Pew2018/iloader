@@ -71,6 +71,7 @@ export const Settings = ({
   //   false,
   // );
   const [logsOpen, setLogsOpen] = useState(false);
+  const [downloadSourcesOpen, setDownloadSourcesOpen] = useState(false);
   const [logLevelFilter, setLogLevelFilter] = useState("3");
   const logs = useLogs();
   const { err } = useError();
@@ -137,7 +138,99 @@ export const Settings = ({
           customToggleLabel={t("settings.use_custom_anisette")}
           presetToggleLabel={t("settings.back_preset_servers")}
         />
-        <div className="download-source-settings">
+        <div>
+          <Dropdown
+            label={t("app.language")}
+            labelId="language"
+            options={sortedLanguages.map(([value, label]) => ({
+              value,
+              label,
+            }))}
+            value={lang}
+            onChange={setLang}
+          />
+          <p className="settings-hint" style={{ margin: 0 }}>
+            <Trans
+              i18nKey="settings.language_hint"
+              components={{
+                translation: (
+                  <span
+                    onClick={() =>
+                      openUrl(
+                        "https://github.com/nab138/iloader?tab=readme-ov-file#translating",
+                      )
+                    }
+                    role="link"
+                    className="error-link"
+                  />
+                ),
+              }}
+            />
+          </p>
+        </div>
+        <div className="settings-buttons">
+          <button onClick={() => setDownloadSourcesOpen(true)}>{t("settings.custom_download_sources")}</button>
+          <button
+            className="action-button danger"
+            onClick={() =>
+              confirm(
+                t("settings.reset_anisette_title"),
+                t("settings.reset_anisette_message"),
+                () =>
+                  toast.promise(invoke("reset_anisette_state"), {
+                    loading: t("settings.resetting_anisette_state"),
+                    success: (didReset) =>
+                      didReset
+                        ? t("settings.anisette_state_reset_success")
+                        : t("settings.anisette_state_not_found"),
+                    error: (e) =>
+                      err(t("settings.failed_reset_anisette_state"), e),
+                  }),
+              )
+            }
+          >
+            {t("settings.reset_anisette_title")}
+          </button>
+          <button
+            className="action-button danger"
+            onClick={() => {
+              if (!ensureSelectedDevice()) return;
+              confirm(
+                t("settings.delete_stored_rppairing"),
+                t("settings.delete_stored_rppairing_message"),
+                () =>
+                  toast.promise(
+                    async () => {
+                      await invoke("delete_stored_rppairing");
+                      await invoke("set_selected_device");
+                      setSelectedDevice(null);
+                    },
+                    {
+                      loading: t("settings.deleting_stored_rppairing"),
+                      success: t("settings.stored_rppairing_deleted_success"),
+                      error: (e) =>
+                        err(t("settings.failed_delete_stored_rppairing"), e),
+                    },
+                  ),
+              );
+            }}
+          >
+            {t("settings.delete_stored_rppairing")}
+          </button>
+          <button onClick={() => setLogsOpen(true)}>
+            {t("settings.view_logs")}
+            <span
+              aria-hidden="true"
+              className="text-muted"
+            >{` (${shortcutLabel("⌘L", "Ctrl+L")})`}</span>
+          </button>
+        </div>
+        <Modal
+          isOpen={downloadSourcesOpen}
+          close={() => setDownloadSourcesOpen(false)}
+          wide
+        >
+          <div className="download-source-settings">
           <h3>{t("settings.download_sources")}</h3>
           <p className="settings-hint">{t("settings.download_sources_hint")}</p>
           <label htmlFor="sidestore-stable-url">
@@ -217,92 +310,7 @@ export const Settings = ({
             </button>
           </div>
         </div>
-        <div>
-          <Dropdown
-            label={t("app.language")}
-            labelId="language"
-            options={sortedLanguages.map(([value, label]) => ({
-              value,
-              label,
-            }))}
-            value={lang}
-            onChange={setLang}
-          />
-          <p className="settings-hint" style={{ margin: 0 }}>
-            <Trans
-              i18nKey="settings.language_hint"
-              components={{
-                translation: (
-                  <span
-                    onClick={() =>
-                      openUrl(
-                        "https://github.com/nab138/iloader?tab=readme-ov-file#translating",
-                      )
-                    }
-                    role="link"
-                    className="error-link"
-                  />
-                ),
-              }}
-            />
-          </p>
-        </div>
-        <div className="settings-buttons">
-          <button
-            className="action-button danger"
-            onClick={() =>
-              confirm(
-                t("settings.reset_anisette_title"),
-                t("settings.reset_anisette_message"),
-                () =>
-                  toast.promise(invoke("reset_anisette_state"), {
-                    loading: t("settings.resetting_anisette_state"),
-                    success: (didReset) =>
-                      didReset
-                        ? t("settings.anisette_state_reset_success")
-                        : t("settings.anisette_state_not_found"),
-                    error: (e) =>
-                      err(t("settings.failed_reset_anisette_state"), e),
-                  }),
-              )
-            }
-          >
-            {t("settings.reset_anisette_title")}
-          </button>
-          <button
-            className="action-button danger"
-            onClick={() => {
-              if (!ensureSelectedDevice()) return;
-              confirm(
-                t("settings.delete_stored_rppairing"),
-                t("settings.delete_stored_rppairing_message"),
-                () =>
-                  toast.promise(
-                    async () => {
-                      await invoke("delete_stored_rppairing");
-                      await invoke("set_selected_device");
-                      setSelectedDevice(null);
-                    },
-                    {
-                      loading: t("settings.deleting_stored_rppairing"),
-                      success: t("settings.stored_rppairing_deleted_success"),
-                      error: (e) =>
-                        err(t("settings.failed_delete_stored_rppairing"), e),
-                    },
-                  ),
-              );
-            }}
-          >
-            {t("settings.delete_stored_rppairing")}
-          </button>
-          <button onClick={() => setLogsOpen(true)}>
-            {t("settings.view_logs")}
-            <span
-              aria-hidden="true"
-              className="text-muted"
-            >{` (${shortcutLabel("⌘L", "Ctrl+L")})`}</span>
-          </button>
-        </div>
+        </Modal>
         <Modal
           isOpen={logsOpen}
           close={() => setLogsOpen(false)}

@@ -172,7 +172,7 @@
   },
   "settings": {
     "download_sources": "Installation download links",
-    "download_sources_hint": "Optional HTTPS IPA URL for each channel. Leave blank to use its official release link.",
+    "download_sources_hint": "Optional HTTPS links for the stable SideStore and LiveContainer + SideStore IPAs. Leave blank to use each official latest release. Nightly downloads are unchanged.",
     "sidestore_stable_url": "SideStore stable IPA URL",
     "livecontainer_stable_url": "LiveContainer + SideStore stable IPA URL",
     "use_official_url": "Use official",
@@ -203,8 +203,7 @@
     "failed_delete_stored_rppairing": "Failed to delete stored pairing",
     "dont_use_keyring": "Don't use keyring",
     "dont_use_keyring_message": "This makes iloader less secure by storing pairing files, anisette state, and certificates on disk. Enable this only if the default keyring storage doesn't work and you understand the risks.",
-    "sidestore_nightly_url": "SideStore nightly IPA URL",
-    "livecontainer_nightly_url": "LiveContainer + SideStore nightly IPA URL"
+    "custom_download_sources": "Custom installer downloads"
   },
   "dialog": {
     "confirm": "Confirm",
