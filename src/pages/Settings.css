@@ -141,3 +141,19 @@
 .settings-label input[type="checkbox"]:checked { background: #90caf9; }
 .settings-label input[type="checkbox"]:checked::before { transform: translateX(22px); background: #2196f3; }
 .settings-label input[type="checkbox"]:focus-visible { outline: 2px solid #2196f3; outline-offset: 4px; }
+
+.download-source-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 4px 18px 12px 4px;
+}
+.download-source-settings h3,
+.download-source-settings p { margin: 0; }
+.download-source-settings label { font-weight: 600; }
+.download-source-row { display: flex; gap: 0.5rem; align-items: center; min-width: 0; }
+.download-source-row input { flex: 1; min-width: 0; }
+.download-source-row button { flex: 0 0 auto; }
+@media (max-width: 600px) {
+  .download-source-row { flex-direction: column; align-items: stretch; }
+}

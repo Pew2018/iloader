@@ -190,7 +190,13 @@
     "error": "错误",
     "language_hint": "您可以<translation>点击这里</translation>帮助我们改进翻译。",
     "dont_use_keyring": "不使用钥匙串",
-    "dont_use_keyring_message": "勾选此项会让 iloader 将配对文件、anisette 状态和相关证书直接储存在磁盘内，从而使系统更不安全。只有当钥匙串无法正常储存且您充分了解此项的风险时可考虑勾选此项。"
+    "dont_use_keyring_message": "勾选此项会让 iloader 将配对文件、anisette 状态和相关证书直接储存在磁盘内，从而使系统更不安全。只有当钥匙串无法正常储存且您充分了解此项的风险时可考虑勾选此项。",
+    "download_sources": "安装包下载链接",
+    "download_sources_hint": "可选：为稳定版 SideStore 和 LiveContainer + SideStore 指定 HTTPS IPA 链接。留空使用各自官方最新版本；夜间版链接不变。",
+    "sidestore_stable_url": "SideStore 稳定版 IPA 链接",
+    "livecontainer_stable_url": "LiveContainer + SideStore 稳定版 IPA 链接",
+    "use_official_url": "使用官方链接",
+    "custom_download_sources": "自定义安装包下载链接"
   },
   "dialog": {
     "confirm": "确认",

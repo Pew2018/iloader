@@ -27,6 +27,7 @@ import logo from "./iloader.svg";
 import { GlassCard } from "./components/GlassCard";
 import { useTranslation } from "react-i18next";
 import { usePlatform } from "./PlatformContext";
+import { useStore } from "./StoreContext";
 
 function App() {
   const { t } = useTranslation();
@@ -45,6 +46,10 @@ function App() {
 
   const [noKeyringAvailable, setNoKeyringAvailable] = useState<boolean>(false);
   const { platform } = usePlatform();
+  const [sideStoreStableUrl] = useStore<string>("sideStoreStableUrl", "");
+  const [sideStoreNightlyUrl] = useStore<string>("sideStoreNightlyUrl", "");
+  const [liveContainerStableUrl] = useStore<string>("liveContainerStableUrl", "");
+  const [liveContainerNightlyUrl] = useStore<string>("liveContainerNightlyUrl", "");
 
   const checkKeyring = useCallback(async () => {
     try {
@@ -311,6 +316,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: false,
                       liveContainer: false,
+                    customUrl: sideStoreStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -325,6 +331,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: true,
                       liveContainer: false,
+                    customUrl: sideStoreNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -339,6 +346,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: false,
                       liveContainer: true,
+                    customUrl: liveContainerStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -353,6 +361,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: true,
                       liveContainer: true,
+                    customUrl: liveContainerNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);

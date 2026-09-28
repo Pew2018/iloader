@@ -47,6 +47,23 @@ export const Settings = ({
     "ani.sidestore.io",
   );
 
+  const [sideStoreStableUrl, setSideStoreStableUrl] = useStore<string>(
+    "sideStoreStableUrl",
+    "",
+  );
+  const [liveContainerStableUrl, setLiveContainerStableUrl] = useStore<string>(
+    "liveContainerStableUrl",
+    "",
+  );
+  const [sideStoreNightlyUrl, setSideStoreNightlyUrl] = useStore<string>(
+    "sideStoreNightlyUrl",
+    "",
+  );
+  const [liveContainerNightlyUrl, setLiveContainerNightlyUrl] = useStore<string>(
+    "liveContainerNightlyUrl",
+    "",
+  );
+
   const [overrideKeyring, setOverrideKeyring] = useStore<boolean>(
     "overrideKeyring",
     false,
@@ -56,6 +73,7 @@ export const Settings = ({
   //   false,
   // );
   const [logsOpen, setLogsOpen] = useState(false);
+  const [downloadSourcesOpen, setDownloadSourcesOpen] = useState(false);
   const [logLevelFilter, setLogLevelFilter] = useState("3");
   const logs = useLogs();
   const { err } = useError();
@@ -164,6 +182,7 @@ export const Settings = ({
           </p>
         </div>
         <div className="settings-buttons">
+          <button onClick={() => setDownloadSourcesOpen(true)}>{t("settings.custom_download_sources")}</button>
           <button
             className="action-button danger"
             onClick={() =>
@@ -219,6 +238,92 @@ export const Settings = ({
             >{` (${shortcutLabel("⌘L", "Ctrl+L")})`}</span>
           </button>
         </div>
+        <Modal
+          isOpen={downloadSourcesOpen}
+          close={() => setDownloadSourcesOpen(false)}
+          wide
+        >
+          <div className="download-source-settings">
+          <h3>{t("settings.download_sources")}</h3>
+          <p className="settings-hint">{t("settings.download_sources_hint")}</p>
+          <label htmlFor="sidestore-stable-url">
+            {t("settings.sidestore_stable_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="sidestore-stable-url"
+              type="url"
+              placeholder="https://github.com/SideStore/SideStore/releases/latest/download/SideStore.ipa"
+              value={sideStoreStableUrl}
+              onChange={(event) => setSideStoreStableUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!sideStoreStableUrl}
+              onClick={() => setSideStoreStableUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+          <label htmlFor="sidestore-nightly-url">
+            {t("settings.sidestore_nightly_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="sidestore-nightly-url"
+              type="url"
+              placeholder="https://github.com/SideStore/SideStore/releases/download/nightly/SideStore.ipa"
+              value={sideStoreNightlyUrl}
+              onChange={(event) => setSideStoreNightlyUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!sideStoreNightlyUrl}
+              onClick={() => setSideStoreNightlyUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+          <label htmlFor="livecontainer-stable-url">
+            {t("settings.livecontainer_stable_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="livecontainer-stable-url"
+              type="url"
+              placeholder="https://github.com/LiveContainer/LiveContainer/releases/latest/download/LiveContainer+SideStore.ipa"
+              value={liveContainerStableUrl}
+              onChange={(event) => setLiveContainerStableUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!liveContainerStableUrl}
+              onClick={() => setLiveContainerStableUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+          <label htmlFor="livecontainer-nightly-url">
+            {t("settings.livecontainer_nightly_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="livecontainer-nightly-url"
+              type="url"
+              placeholder="https://github.com/LiveContainer/LiveContainer/releases/download/nightly/LiveContainer+SideStore.ipa"
+              value={liveContainerNightlyUrl}
+              onChange={(event) => setLiveContainerNightlyUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!liveContainerNightlyUrl}
+              onClick={() => setLiveContainerNightlyUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+        </div>
+        </Modal>
         <Modal
           wide
           isOpen={logsOpen}
