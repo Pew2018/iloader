@@ -106,3 +106,20 @@
 .log-entry {
   padding: 0 0.65em;
 }
+
+.download-source-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+.download-source-settings h3,
+.download-source-settings p { margin: 0; }
+.download-source-settings label { font-weight: 600; }
+.download-source-row { display: flex; gap: 0.5rem; align-items: center; min-width: 0; }
+.download-source-row input { flex: 1; min-width: 0; }
+.download-source-row button { flex: 0 0 auto; }
+@media (max-width: 600px) {
+  .download-source-row { flex-direction: column; align-items: stretch; }
+}

@@ -45,6 +45,15 @@ export const Settings = ({
     "ani.sidestore.io",
   );
 
+  const [sideStoreStableUrl, setSideStoreStableUrl] = useStore<string>(
+    "sideStoreStableUrl",
+    "",
+  );
+  const [liveContainerStableUrl, setLiveContainerStableUrl] = useStore<string>(
+    "liveContainerStableUrl",
+    "",
+  );
+
   const [overrideKeyring, setOverrideKeyring] = useStore<boolean>(
     "overrideKeyring",
     false,
@@ -120,6 +129,48 @@ export const Settings = ({
           customToggleLabel={t("settings.use_custom_anisette")}
           presetToggleLabel={t("settings.back_preset_servers")}
         />
+        <div className="download-source-settings">
+          <h3>{t("settings.download_sources")}</h3>
+          <p className="settings-hint">{t("settings.download_sources_hint")}</p>
+          <label htmlFor="sidestore-stable-url">
+            {t("settings.sidestore_stable_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="sidestore-stable-url"
+              type="url"
+              placeholder="https://github.com/SideStore/SideStore/releases/latest/download/SideStore.ipa"
+              value={sideStoreStableUrl}
+              onChange={(event) => setSideStoreStableUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!sideStoreStableUrl}
+              onClick={() => setSideStoreStableUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+          <label htmlFor="livecontainer-stable-url">
+            {t("settings.livecontainer_stable_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="livecontainer-stable-url"
+              type="url"
+              placeholder="https://github.com/LiveContainer/LiveContainer/releases/latest/download/LiveContainer+SideStore.ipa"
+              value={liveContainerStableUrl}
+              onChange={(event) => setLiveContainerStableUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!liveContainerStableUrl}
+              onClick={() => setLiveContainerStableUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+        </div>
         <div>
           <Dropdown
             label={t("app.language")}

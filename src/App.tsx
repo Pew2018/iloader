@@ -27,6 +27,7 @@ import logo from "./iloader.svg";
 import { GlassCard } from "./components/GlassCard";
 import { useTranslation } from "react-i18next";
 import { usePlatform } from "./PlatformContext";
+import { useStore } from "./StoreContext";
 
 function App() {
   const { t } = useTranslation();
@@ -45,6 +46,8 @@ function App() {
 
   const [noKeyringAvailable, setNoKeyringAvailable] = useState<boolean>(false);
   const { platform } = usePlatform();
+  const [sideStoreStableUrl] = useStore<string>("sideStoreStableUrl", "");
+  const [liveContainerStableUrl] = useStore<string>("liveContainerStableUrl", "");
 
   const checkKeyring = useCallback(async () => {
     try {
@@ -311,6 +314,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: false,
                       liveContainer: false,
+                      customUrl: sideStoreStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -325,6 +329,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: true,
                       liveContainer: false,
+                      customUrl: null,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -339,6 +344,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: false,
                       liveContainer: true,
+                      customUrl: liveContainerStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -353,6 +359,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: true,
                       liveContainer: true,
+                      customUrl: null,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);

@@ -98,6 +98,7 @@ pub async fn install_sidestore_operation(
     sideloader_state: State<'_, SideloaderMutex>,
     nightly: bool,
     live_container: bool,
+    custom_url: Option<String>,
 ) -> Result<(), AppError> {
     let op = Operation::new("install_sidestore".to_string(), &window);
     op.start("download")?;
@@ -126,12 +127,27 @@ pub async fn install_sidestore_operation(
         )
     };
 
+    // The override applies only to stable downloads; nightly builds keep their own links.
+    let download_url = if nightly {
+        url
+    } else {
+        custom_url.as_deref().map(str::trim).filter(|value| !value.is_empty()).unwrap_or(url)
+    };
+    let parsed_url = match reqwest::Url::parse(download_url) {
+        Ok(parsed)
+            if parsed.scheme() == "https"
+                && parsed.host_str().is_some()
+                && parsed.username().is_empty()
+                && parsed.password().is_none() => parsed,
+        _ => return op.fail("download", AppError::Download("Download URL must be a valid HTTPS address without embedded credentials".into())),
+    };
+
     let dest = handle
         .path()
         .temp_dir()
         .map_err(|e| AppError::Filesystem("Failed to get temp dir".into(), e.to_string()))?
         .join(filename);
-    op.fail_if_err("download", download(url, &dest).await)?;
+    op.fail_if_err("download", download(parsed_url.as_str(), &dest).await)?;
     op.move_on("download", "install")?;
     let device = {
         let device_guard = device_state.lock().unwrap();

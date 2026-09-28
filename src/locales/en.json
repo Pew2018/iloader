@@ -171,6 +171,11 @@
     "place_all": "Place In All Apps"
   },
   "settings": {
+    "download_sources": "Installation download links",
+    "download_sources_hint": "Optional HTTPS links for the stable SideStore and LiveContainer + SideStore IPAs. Leave blank to use each official latest release. Nightly downloads are unchanged.",
+    "sidestore_stable_url": "SideStore stable IPA URL",
+    "livecontainer_stable_url": "LiveContainer + SideStore stable IPA URL",
+    "use_official_url": "Use official",
     "anisette_server": "Anisette Server:",
     "custom_anisette_placeholder": "Custom Anisette Server",
     "custom_anisette": "Custom",

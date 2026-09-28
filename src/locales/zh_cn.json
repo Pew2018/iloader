@@ -166,6 +166,11 @@
     "refresh_installed_apps": "刷新已安装的应用"
   },
   "settings": {
+    "download_sources": "安装包下载链接",
+    "download_sources_hint": "可选：为稳定版 SideStore 和 LiveContainer + SideStore 指定 HTTPS IPA 链接。留空使用各自官方最新版本；夜间版链接不变。",
+    "sidestore_stable_url": "SideStore 稳定版 IPA 链接",
+    "livecontainer_stable_url": "LiveContainer + SideStore 稳定版 IPA 链接",
+    "use_official_url": "使用官方链接",
     "anisette_server": "Anisette 服务器：",
     "custom_anisette_placeholder": "自定义 Anisette 服务器",
     "custom_anisette": "自定义",
