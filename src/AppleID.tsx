@@ -179,14 +179,15 @@ export const AppleID = ({
                 </div>
               ))}
               {!addAccountOpen && (
-                <div
+                <button
+                  type="button"
                   className="stored add-account"
                   onClick={() => {
                     setAddAccountOpen(true);
                   }}
                 >
                   {t("apple_id.add_account")}
-                </div>
+                </button>
               )}
             </div>
           </div>

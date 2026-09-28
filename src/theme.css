@@ -74,8 +74,10 @@
 :root[data-theme="dark"] .add-account,
 :root[data-theme="dark"] .link-button,
 :root[data-theme="dark"] a { color: #90caf9; }
-:root[data-theme="dark"] .add-account:hover,
+:root[data-theme="dark"] .add-account:hover:not(:disabled) { color: #bbdefb; background: #353535; }
 :root[data-theme="dark"] .link-button:hover { color: #bbdefb; }
+:root[data-theme="dark"] button.add-account { background: transparent; border: 0; color: #90caf9; }
+:root[data-theme="dark"] button.add-account:hover:not(:disabled) { background: #353535; color: #bbdefb; }
 :root[data-theme="dark"] .device-card { background: #303030; border-color: #484848; }
 :root[data-theme="dark"] .device-card:hover:not(:disabled) { background: #393939; }
 :root[data-theme="dark"] .device-card.active,

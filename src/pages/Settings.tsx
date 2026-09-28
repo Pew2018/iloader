@@ -220,6 +220,7 @@ export const Settings = ({
           </button>
         </div>
         <Modal
+          wide
           isOpen={logsOpen}
           close={() => setLogsOpen(false)}
           zIndex={9999999999}
