@@ -47,7 +47,9 @@ function App() {
   const [noKeyringAvailable, setNoKeyringAvailable] = useState<boolean>(false);
   const { platform } = usePlatform();
   const [sideStoreStableUrl] = useStore<string>("sideStoreStableUrl", "");
+  const [sideStoreNightlyUrl] = useStore<string>("sideStoreNightlyUrl", "");
   const [liveContainerStableUrl] = useStore<string>("liveContainerStableUrl", "");
+  const [liveContainerNightlyUrl] = useStore<string>("liveContainerNightlyUrl", "");
 
   const checkKeyring = useCallback(async () => {
     try {
@@ -329,7 +331,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: true,
                       liveContainer: false,
-                      customUrl: null,
+                      customUrl: sideStoreNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -359,7 +361,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: true,
                       liveContainer: true,
-                      customUrl: null,
+                      customUrl: liveContainerNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);

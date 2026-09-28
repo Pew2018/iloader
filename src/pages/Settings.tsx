@@ -53,6 +53,14 @@ export const Settings = ({
     "liveContainerStableUrl",
     "",
   );
+  const [sideStoreNightlyUrl, setSideStoreNightlyUrl] = useStore<string>(
+    "sideStoreNightlyUrl",
+    "",
+  );
+  const [liveContainerNightlyUrl, setLiveContainerNightlyUrl] = useStore<string>(
+    "liveContainerNightlyUrl",
+    "",
+  );
 
   const [overrideKeyring, setOverrideKeyring] = useStore<boolean>(
     "overrideKeyring",
@@ -151,6 +159,25 @@ export const Settings = ({
               {t("settings.use_official_url")}
             </button>
           </div>
+          <label htmlFor="sidestore-nightly-url">
+            {t("settings.sidestore_nightly_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="sidestore-nightly-url"
+              type="url"
+              placeholder="https://github.com/SideStore/SideStore/releases/download/nightly/SideStore.ipa"
+              value={sideStoreNightlyUrl}
+              onChange={(event) => setSideStoreNightlyUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!sideStoreNightlyUrl}
+              onClick={() => setSideStoreNightlyUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
           <label htmlFor="livecontainer-stable-url">
             {t("settings.livecontainer_stable_url")}
           </label>
@@ -166,6 +193,25 @@ export const Settings = ({
               type="button"
               disabled={!liveContainerStableUrl}
               onClick={() => setLiveContainerStableUrl("")}
+            >
+              {t("settings.use_official_url")}
+            </button>
+          </div>
+          <label htmlFor="livecontainer-nightly-url">
+            {t("settings.livecontainer_nightly_url")}
+          </label>
+          <div className="download-source-row">
+            <input
+              id="livecontainer-nightly-url"
+              type="url"
+              placeholder="https://github.com/LiveContainer/LiveContainer/releases/download/nightly/LiveContainer+SideStore.ipa"
+              value={liveContainerNightlyUrl}
+              onChange={(event) => setLiveContainerNightlyUrl(event.target.value)}
+            />
+            <button
+              type="button"
+              disabled={!liveContainerNightlyUrl}
+              onClick={() => setLiveContainerNightlyUrl("")}
             >
               {t("settings.use_official_url")}
             </button>

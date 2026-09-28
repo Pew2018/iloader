@@ -127,12 +127,12 @@ pub async fn install_sidestore_operation(
         )
     };
 
-    // The override applies only to stable downloads; nightly builds keep their own links.
-    let download_url = if nightly {
-        url
-    } else {
-        custom_url.as_deref().map(str::trim).filter(|value| !value.is_empty()).unwrap_or(url)
-    };
+    // An empty override keeps the official URL for the selected channel.
+    let download_url = custom_url
+        .as_deref()
+        .map(str::trim)
+        .filter(|value| !value.is_empty())
+        .unwrap_or(url);
     let parsed_url = match reqwest::Url::parse(download_url) {
         Ok(parsed)
             if parsed.scheme() == "https"
