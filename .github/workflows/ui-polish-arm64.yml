@@ -1,0 +1,31 @@
+name: "UI polish macOS arm64"
+
+on:
+  push:
+    branches: [feat/ui-polish]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos-arm64:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Build frontend
+        run: bun run build
+      - name: Build macOS arm64 app
+        run: bunx tauri build --target aarch64-apple-darwin --bundles dmg --config src-tauri/ci.conf.json
+      - name: Upload arm64 DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: iloader-macos-arm64
+          path: src-tauri/target/aarch64-apple-darwin/release/bundle/dmg/*.dmg
+          if-no-files-found: error

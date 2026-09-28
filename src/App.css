@@ -370,3 +370,139 @@ h3,
 h4 {
   margin: 0.5rem 0;
 }
+
+
+/* UI polish: consistent depth, readable hierarchy and keyboard focus. */
+:root {
+  color: #f5f7fc;
+  background-color: #0b101a;
+  --glass-surface: #171f2d;
+  --glass-surface-alt: #202b3b;
+  --glass-border: rgba(197, 214, 240, 0.12);
+  --glass-highlight: #65a9ff;
+  --text-muted: #a5b4ca;
+  --accent-primary: #4d9bff;
+  --accent-secondary: #8bbdff;
+  --success: #4dd991;
+  --danger: #ff7c79;
+}
+
+body { background-color: #0b101a; }
+.workspace {
+  background: radial-gradient(circle at 82% 0%, rgba(50, 99, 175, 0.14), transparent 36rem), #0b101a;
+}
+.workspace-header {
+  padding: 1.15rem clamp(1.25rem, 3vw, 2.5rem);
+  border-bottom-color: var(--glass-border);
+  background: rgba(16, 23, 35, 0.94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.title-block { gap: 0.85rem; }
+.title { font-size: 1.5rem; letter-spacing: -0.035em; line-height: 1.2; }
+.subtitle { font-size: 0.83rem; margin-top: 0.2rem; }
+.logo { width: 2.75rem; height: 2.75rem; }
+.version-pill {
+  min-width: 0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: rgba(145, 174, 215, 0.09);
+  border-color: var(--glass-border);
+  font-size: 0.78rem;
+}
+.toolbar-button {
+  min-width: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+}
+.workspace-body {
+  width: 100%;
+  max-width: 1480px;
+  margin-inline: auto;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+.workspace-sidebar { width: clamp(280px, 27%, 350px); flex-shrink: 0; gap: 1.75rem; }
+.workspace-content { min-width: 0; gap: 1.75rem; }
+.workspace-section { min-width: 0; gap: 0.75rem; }
+.section-header { min-width: 0; gap: 1rem; }
+.section-label {
+  color: #d5e3f6;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+.section-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+input, button, select {
+  border-radius: 10px;
+  background: #253246;
+  border-color: var(--glass-border);
+  transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+input:focus, select:focus {
+  background: #293a52;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(77, 155, 255, 0.18);
+}
+button { background: #29384d; }
+button:hover:not(:disabled) { background: #334761; border-color: rgba(139, 189, 255, 0.6); }
+button:focus-visible, .workspace-list-item:focus-visible, .link-button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+.glass-card {
+  background: var(--glass-surface);
+  border-color: var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.17);
+}
+.panel { background: var(--glass-surface); border-color: var(--glass-border); border-radius: 16px; }
+.card { background: var(--glass-surface-alt); border-color: var(--glass-border); }
+.workspace-list {
+  background: var(--glass-surface);
+  border-radius: 14px;
+}
+.workspace-list-item {
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-bottom-color: var(--glass-border);
+  font-size: 0.92rem;
+}
+.workspace-list-item span {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 0.12rem 0.35rem;
+}
+.workspace-list-item:hover:not(:disabled) { background: rgba(93, 151, 225, 0.1); }
+.action-row.single-row button { min-width: 160px; }
+@media (max-width: 900px) {
+  .workspace-body { flex-direction: column; }
+  .workspace-sidebar { width: 100%; }
+}
+@media (max-width: 768px) {
+  .workspace-header { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+  .header-left { justify-content: flex-start; }
+  .workspace-body { padding: 1.25rem; }
+  .section-header { flex-wrap: wrap; }
+  .section-hint { text-align: left; }
+}
+@media (max-width: 480px) {
+  .header-left { gap: 0.65rem; }
+  .subtitle { display: none; }
+  .version-pill { font-size: 0.7rem; }
+  .workspace-list-item { font-size: 0.86rem; }
+  .action-row.single-row button { min-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

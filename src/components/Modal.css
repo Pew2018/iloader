@@ -86,3 +86,13 @@
   padding: 5px;
   box-sizing: border-box;
 }
+.modal-container { background: rgba(5, 10, 18, 0.67); }
+.modal { background: #1c2737; border-radius: 18px; overflow: hidden; }
+.modal-close {
+  top: 0.65rem; right: 0.65rem;
+  width: 2rem; height: 2rem; line-height: 2rem;
+  border-radius: 8px;
+  color: var(--text-muted);
+}
+.modal-close:hover:not(:disabled) { color: #fff; background: rgba(255,255,255,0.1) !important; }
+.active-page { background-color: var(--accent-primary); }
