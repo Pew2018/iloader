@@ -171,6 +171,10 @@
     "place_all": "Place In All Apps"
   },
   "settings": {
+    "appearance": "Appearance",
+    "appearance_system": "Follow system",
+    "appearance_light": "Light",
+    "appearance_dark": "Dark",
     "anisette_server": "Anisette Server:",
     "custom_anisette_placeholder": "Custom Anisette Server",
     "custom_anisette": "Custom",

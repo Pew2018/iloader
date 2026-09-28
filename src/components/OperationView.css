@@ -138,3 +138,10 @@
   margin: 0 0 0.5rem 0;
   padding-left: 2rem;
 }
+
+.operation-step { background: #fafafa; border-color: #dedede; border-radius: 3px; }
+.operation-extra-details { background: #f0f0f0; border-radius: 3px; }
+.loading-icon { border-color: #2196f3 #2196f3 transparent transparent; }
+.waiting-icon { border-color: #bdbdbd; }
+.operation-skipped { color: #757575; }
+.operation-success-message { color: #2e7d32; }

@@ -166,6 +166,10 @@
     "refresh_installed_apps": "刷新已安装的应用"
   },
   "settings": {
+    "appearance": "外观",
+    "appearance_system": "跟随系统",
+    "appearance_light": "浅色",
+    "appearance_dark": "深色",
     "anisette_server": "Anisette 服务器：",
     "custom_anisette_placeholder": "自定义 Anisette 服务器",
     "custom_anisette": "自定义",

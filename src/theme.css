@@ -1,0 +1,123 @@
+/* Material-era dark palette. Light mode stays in the existing component styles. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  color: #f1f1f1;
+  background: #1b1b1b;
+  --glass-surface: #292929;
+  --glass-surface-alt: #303030;
+  --glass-border: #484848;
+  --text-muted: #b0b0b0;
+  --accent-primary: #42a5f5;
+  --accent-secondary: #90caf9;
+  --success: #81c784;
+  --danger: #ef9a9a;
+}
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] .workspace { background: #1b1b1b; color: #f1f1f1; }
+:root[data-theme="dark"] .workspace-header { background: #242424; }
+:root[data-theme="dark"] .workspace-section { background: #292929; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+:root[data-theme="dark"] .section-header,
+:root[data-theme="dark"] .workspace-section > .section-label { border-bottom-color: #484848; }
+:root[data-theme="dark"] .section-label { color: #d0d0d0; }
+:root[data-theme="dark"] .section-hint,
+:root[data-theme="dark"] .text-muted { color: #aaa; }
+:root[data-theme="dark"] .glass-card,
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .card { background: #292929; color: #f1f1f1; border-color: #484848; }
+:root[data-theme="dark"] .workspace-list-item {
+  background: transparent;
+  color: #f1f1f1;
+  border-bottom-color: #484848;
+}
+:root[data-theme="dark"] .workspace-list-item span { color: #aaa; }
+:root[data-theme="dark"] .workspace-list-item:hover:not(:disabled) { background: #353535; }
+:root[data-theme="dark"] button {
+  background: #383838;
+  color: #f1f1f1;
+  border-color: #575757;
+}
+:root[data-theme="dark"] button:hover:not(:disabled) { background: #454545; }
+:root[data-theme="dark"] button:active:not(:disabled) { background: #505050; }
+:root[data-theme="dark"] .toolbar-button {
+  background: transparent;
+  color: #fff;
+  border-color: #777;
+}
+:root[data-theme="dark"] .toolbar-button:hover:not(:disabled) { background: rgba(255,255,255,.1); }
+:root[data-theme="dark"] .action-row.single-row button:first-child,
+:root[data-theme="dark"] .action-button.primary,
+:root[data-theme="dark"] .action-button.primary:hover:not(:disabled) {
+  background: #1976d2;
+  border-color: #1976d2;
+  color: #fff;
+}
+:root[data-theme="dark"] .action-button.danger { background: #383838; color: #ef9a9a; border-color: #8b5757; }
+:root[data-theme="dark"] .action-button.danger:hover:not(:disabled) { background: #493333; }
+:root[data-theme="dark"] input:not([type="checkbox"]),
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea {
+  background: #303030;
+  color: #f1f1f1;
+  border-color: #626262;
+}
+:root[data-theme="dark"] input::placeholder { color: #aaa; }
+:root[data-theme="dark"] .logged-label,
+:root[data-theme="dark"] .device-connection,
+:root[data-theme="dark"] .settings-hint { color: #aaa; }
+:root[data-theme="dark"] .logged-value,
+:root[data-theme="dark"] .stored-email { color: #f1f1f1; }
+:root[data-theme="dark"] .stored,
+:root[data-theme="dark"] .settings-container > .settings-buttons,
+:root[data-theme="dark"] .settings-container > div:last-child,
+:root[data-theme="dark"] .certificate-item { border-color: #484848; }
+:root[data-theme="dark"] .cert-item { background: #303030; border-color: #484848; }
+:root[data-theme="dark"] .add-account,
+:root[data-theme="dark"] .link-button,
+:root[data-theme="dark"] a { color: #90caf9; }
+:root[data-theme="dark"] .add-account:hover:not(:disabled) { color: #bbdefb; background: #353535; }
+:root[data-theme="dark"] .link-button:hover { color: #bbdefb; }
+:root[data-theme="dark"] button.add-account { background: transparent; border: 0; color: #90caf9; }
+:root[data-theme="dark"] button.add-account:hover:not(:disabled) { background: #353535; color: #bbdefb; }
+:root[data-theme="dark"] .device-card { background: #303030; border-color: #484848; }
+:root[data-theme="dark"] .device-card:hover:not(:disabled) { background: #393939; }
+:root[data-theme="dark"] .device-card.active,
+:root[data-theme="dark"] .device-card.active:hover:not(:disabled) {
+  background: #17374b;
+  border-color: #42a5f5;
+  box-shadow: inset 3px 0 #42a5f5;
+}
+:root[data-theme="dark"] .device-selected-pill { color: #90caf9; }
+:root[data-theme="dark"] .dropdown-toggle,
+:root[data-theme="dark"] .custom-dropdown.open .dropdown-toggle {
+  background: #303030;
+  color: #f1f1f1;
+  border-color: #626262;
+}
+:root[data-theme="dark"] .custom-dropdown.open .dropdown-toggle { border-color: #42a5f5; }
+:root[data-theme="dark"] .dropdown-caret { border-color: #bbb; }
+:root[data-theme="dark"] .dropdown-menu { background: #303030; border-color: #626262; box-shadow: 0 6px 18px rgba(0,0,0,.5); }
+:root[data-theme="dark"] .dropdown-option { background: transparent; color: #f1f1f1; }
+:root[data-theme="dark"] .dropdown-option:hover:not(:disabled),
+:root[data-theme="dark"] .dropdown-option:focus-visible { background: #424242; }
+:root[data-theme="dark"] .dropdown-option.selected { background: #17374b; color: #bbdefb; }
+:root[data-theme="dark"] .modal { background: #292929; color: #f1f1f1; }
+:root[data-theme="dark"] .modal-close { color: #bbb; background: transparent; border: 0; }
+:root[data-theme="dark"] .modal-close:hover:not(:disabled) { background: #414141; }
+:root[data-theme="dark"] .page-circle { background: #777; }
+:root[data-theme="dark"] .active-page { background: #42a5f5; }
+:root[data-theme="dark"] .operation-step { background: #303030; border-color: #484848; }
+:root[data-theme="dark"] .operation-extra-details,
+:root[data-theme="dark"] .log-inner,
+:root[data-theme="dark"] .error-inner { background: #202020; color: #eee; border-color: #484848; }
+:root[data-theme="dark"] .operation-skipped { color: #aaa; }
+:root[data-theme="dark"] .operation-success-message { color: #81c784; }
+:root[data-theme="dark"] .settings-label input[type="checkbox"] { background: #666; }
+:root[data-theme="dark"] .settings-label input[type="checkbox"]::before { background: #ddd; }
+:root[data-theme="dark"] .settings-label input[type="checkbox"]:checked { background: #39749e; }
+:root[data-theme="dark"] .settings-label input[type="checkbox"]:checked::before { background: #42a5f5; }
+:root[data-theme="dark"] .ripple-ink { background: rgba(255,255,255,.18); }
+:root[data-theme="dark"] [data-sonner-toast] {
+  --normal-bg: #303030;
+  --normal-text: #f1f1f1;
+  --normal-border: #575757;
+}

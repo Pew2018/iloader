@@ -5,6 +5,7 @@ export const Modal = ({
   isOpen,
   close,
   sizeFit,
+  wide,
   children,
   hideClose,
   zIndex,
@@ -13,6 +14,7 @@ export const Modal = ({
   isOpen: boolean;
   close?: () => void;
   sizeFit?: boolean;
+  wide?: boolean;
   hideClose?: boolean;
   zIndex?: number;
 }) => {
@@ -47,7 +49,7 @@ export const Modal = ({
               : {}
           }
         >
-          <div className={`modal${sizeFit ? " size-fit" : ""}`}>
+          <div className={`modal${sizeFit ? " size-fit" : ""}${wide ? " wide" : ""}`}>
             {!hideClose && close && (
               <button
                 className="modal-close"
