@@ -8,6 +8,7 @@ import { ErrorProvider } from "./ErrorContext";
 import { DialogProvider } from "./DialogContext";
 import "./i18next";
 import { PlatformProvider } from "./PlatformContext";
+import { RippleEffect } from "./components/RippleEffect";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </ErrorProvider>
       </StoreProvider>
     </PlatformProvider>
+    <RippleEffect />
     <Toaster richColors expand />
   </React.StrictMode>,
 );
