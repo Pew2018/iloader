@@ -197,7 +197,6 @@ export const Device = ({
           </button>
         </div>
       </Modal>
-      <h2 style={{ marginTop: 0 }}>{t("device.title")}</h2>
       <div className="credentials-container">
         {devices.length === 0 && (
           <div>{t("device.no_devices_found_period")}</div>

@@ -13,6 +13,7 @@ import { Trans, useTranslation } from "react-i18next";
 import i18n, { sortedLanguages } from "../i18next";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { DeviceInfo } from "../Device";
+import { Appearance } from "../ThemeController";
 
 type SettingsProps = {
   ensureSelectedDevice: () => boolean;
@@ -40,6 +41,7 @@ export const Settings = ({
   checkKeyring,
 }: SettingsProps) => {
   const { t } = useTranslation();
+  const [appearance, setAppearance] = useStore<Appearance>("appearance", "system");
   const [anisetteServer, setAnisetteServer] = useStore<string>(
     "anisetteServer",
     "ani.sidestore.io",
@@ -125,6 +127,17 @@ export const Settings = ({
   return (
     <>
       <div className="settings-container">
+        <Dropdown
+          label={t("settings.appearance")}
+          labelId="appearance"
+          options={[
+            { value: "system", label: t("settings.appearance_system") },
+            { value: "light", label: t("settings.appearance_light") },
+            { value: "dark", label: t("settings.appearance_dark") },
+          ]}
+          value={appearance}
+          onChange={(value) => setAppearance(value as Appearance)}
+        />
         <Dropdown
           label={t("settings.anisette_server")}
           labelId="anisette-label"
@@ -312,6 +325,7 @@ export const Settings = ({
         </div>
         </Modal>
         <Modal
+          wide
           isOpen={logsOpen}
           close={() => setLogsOpen(false)}
           zIndex={9999999999}

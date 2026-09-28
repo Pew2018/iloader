@@ -110,10 +110,15 @@ pub fn delete_account(handle: AppHandle, email: String) -> Result<(), AppError> 
             e.to_string(),
         )
     })?;
-    pass_entry.delete_credential().map_err(|e| {
-        AppError::KeyringWithMessage("Failed to delete credentials".into(), e.to_string())
-    })?;
-    Ok(())
+    // The password may have been removed outside iloader while the saved ID remains
+    // in data.json. In that case, deleting the account is already complete.
+    match pass_entry.delete_credential() {
+        Ok(()) | Err(keyring::Error::NoEntry) => Ok(()),
+        Err(e) => Err(AppError::KeyringWithMessage(
+            "Failed to delete credentials".into(),
+            e.to_string(),
+        )),
+    }
 }
 
 #[tauri::command]

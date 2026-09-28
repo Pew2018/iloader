@@ -88,3 +88,11 @@
   font-weight: 700;
   font-size: 0.95rem;
 }
+
+.dropdown-toggle { background: #fff; border-color: #c8c8c8; border-radius: 3px; color: #212121; }
+.custom-dropdown.open .dropdown-toggle { background: #fff; border-color: #2196f3; }
+.dropdown-caret { border-color: #616161; }
+.dropdown-menu { background: #fff; border-color: #dedede; border-radius: 3px; box-shadow: 0 6px 16px rgba(0,0,0,.22); }
+.dropdown-option { border-radius: 2px; background: transparent; color: #212121; }
+.dropdown-option:hover:not(:disabled), .dropdown-option:focus-visible { background: #f0f0f0; }
+.dropdown-option.selected { background: #e3f2fd; color: #1565c0; }

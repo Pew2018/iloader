@@ -171,11 +171,10 @@
     "place_all": "Place In All Apps"
   },
   "settings": {
-    "download_sources": "Installation download links",
-    "download_sources_hint": "Optional HTTPS links for the stable SideStore and LiveContainer + SideStore IPAs. Leave blank to use each official latest release. Nightly downloads are unchanged.",
-    "sidestore_stable_url": "SideStore stable IPA URL",
-    "livecontainer_stable_url": "LiveContainer + SideStore stable IPA URL",
-    "use_official_url": "Use official",
+    "appearance": "Appearance",
+    "appearance_system": "Follow system",
+    "appearance_light": "Light",
+    "appearance_dark": "Dark",
     "anisette_server": "Anisette Server:",
     "custom_anisette_placeholder": "Custom Anisette Server",
     "custom_anisette": "Custom",
@@ -203,6 +202,11 @@
     "failed_delete_stored_rppairing": "Failed to delete stored pairing",
     "dont_use_keyring": "Don't use keyring",
     "dont_use_keyring_message": "This makes iloader less secure by storing pairing files, anisette state, and certificates on disk. Enable this only if the default keyring storage doesn't work and you understand the risks.",
+    "download_sources": "Installation download links",
+    "download_sources_hint": "Optional HTTPS links for the stable SideStore and LiveContainer + SideStore IPAs. Leave blank to use each official latest release. Nightly downloads are unchanged.",
+    "sidestore_stable_url": "SideStore stable IPA URL",
+    "livecontainer_stable_url": "LiveContainer + SideStore stable IPA URL",
+    "use_official_url": "Use official",
     "custom_download_sources": "Custom installer downloads"
   },
   "dialog": {

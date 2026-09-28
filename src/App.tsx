@@ -316,7 +316,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: false,
                       liveContainer: false,
-                      customUrl: sideStoreStableUrl,
+                    customUrl: sideStoreStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -331,7 +331,7 @@ function App() {
                     startOperation(installSideStoreOperation, {
                       nightly: true,
                       liveContainer: false,
-                      customUrl: sideStoreNightlyUrl,
+                    customUrl: sideStoreNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -346,7 +346,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: false,
                       liveContainer: true,
-                      customUrl: liveContainerStableUrl,
+                    customUrl: liveContainerStableUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
@@ -361,7 +361,7 @@ function App() {
                     startOperation(installLiveContainerOperation, {
                       nightly: true,
                       liveContainer: true,
-                      customUrl: liveContainerNightlyUrl,
+                    customUrl: liveContainerNightlyUrl,
                     }).catch((e) => {
                       console.log(e.type);
                       console.error(e.message);
