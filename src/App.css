@@ -23,8 +23,8 @@ body { margin: 0; min-width: 320px; }
 #root { min-height: 100vh; }
 .workspace { min-height: 100vh; background: #e8e8e8; }
 .workspace-header {
-  min-height: 116px;
-  padding: 24px clamp(24px, 4vw, 48px);
+  min-height: 78px;
+  padding: 12px clamp(24px, 3vw, 36px);
   background: #303030;
   color: #fff;
   box-shadow: 0 2px 5px rgba(0,0,0,.22);
@@ -36,9 +36,9 @@ body { margin: 0; min-width: 320px; }
 .header-left, .title-block, .header-actions { display: flex; align-items: center; }
 .header-left { gap: 24px; min-width: 0; }
 .title-block { gap: 14px; min-width: 0; }
-.title { margin: 0; font-size: 26px; line-height: 1.2; font-weight: 500; }
-.subtitle { margin: 3px 0 0; color: #c7c7c7; font-size: 15px; }
-.logo { width: 36px; height: 36px; flex-shrink: 0; -webkit-user-drag: none; }
+.title { margin: 0; font-size: 23px; line-height: 1.2; font-weight: 500; }
+.subtitle { margin: 2px 0 0; color: #c7c7c7; font-size: 13px; }
+.logo { width: 30px; height: 30px; flex-shrink: 0; -webkit-user-drag: none; }
 .version-pill { color: #c7c7c7; font-size: 13px; white-space: nowrap; }
 .toolbar-button {
   border: 1px solid rgba(255,255,255,.34);
@@ -67,11 +67,12 @@ body { margin: 0; min-width: 320px; }
 .workspace-content { flex: 1; }
 .workspace-section {
   min-width: 0;
-  overflow: hidden;
   border-radius: 3px;
   background: #fafafa;
   box-shadow: 0 2px 5px rgba(0,0,0,.17);
 }
+.workspace-section > :first-child { border-radius: 3px 3px 0 0; }
+.workspace-section > :last-child { border-radius: 0 0 3px 3px; }
 .section-header, .workspace-section > .section-label {
   min-height: 56px;
   margin: 0;
@@ -192,7 +193,7 @@ h1, h2, h3, h4 { margin: 0 0 12px; font-weight: 500; }
   .workspace-sidebar, .workspace-content { width: 100%; }
 }
 @media (max-width: 560px) {
-  .workspace-header { min-height: 100px; padding: 18px 24px; flex-wrap: wrap; }
+  .workspace-header { min-height: 76px; padding: 12px 20px; flex-wrap: wrap; }
   .header-left { gap: 10px; flex-wrap: wrap; }
   .title { font-size: 24px; }
   .version-pill { display: none; }
